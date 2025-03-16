@@ -7,7 +7,7 @@ export default function Home() {
       <div className="max-w-3xl w-full">
         <header className="mb-8 text-center">
           <h1 className="text-4xl font-bold mb-2">lazyahh</h1>
-          <p className="text-gray-600">A simple Discord bot that responds with minimal effort</p>
+          <p className="text-gray-600">just a test bot</p>
         </header>
 
         <div className="flex flex-col md:flex-row gap-6 mb-10 items-center justify-center">
@@ -32,25 +32,25 @@ export default function Home() {
           <ul className="space-y-4">
             <li className="border-b pb-3">
               <div className="font-medium">/chat [message]</div>
-              <div className="text-gray-600 text-sm">Chat with the bot - it might respond with minimal effort</div>
+              <div className="text-gray-600 text-sm">type shit</div>
             </li>
             <li className="border-b pb-3">
-              <div className="font-medium">/meme</div>
-              <div className="text-gray-600 text-sm">Get a random meme</div>
+              <div className="font-medium">/mem</div>
+              <div className="text-gray-600 text-sm">idk</div>
             </li>
             <li className="border-b pb-3">
               <div className="font-medium">/intro</div>
-              <div className="text-gray-600 text-sm">Show information about the bot developer</div>
+              <div className="text-gray-600 text-sm">ahh bot</div>
             </li>
             <li className="border-b pb-3">
               <div className="font-medium">/help</div>
-              <div className="text-gray-600 text-sm">Get help when you need it most</div>
+              <div className="text-gray-600 text-sm">health</div>
             </li>
           </ul>
         </section>
 
         <section className="bg-white p-6 rounded-lg shadow-sm">
-          <h2 className="text-2xl font-semibold mb-4">About</h2>
+          <h2 className="text-2xl font-semibold mb-4">Lingan guliguli</h2>
           <p className="text-gray-600">just a bot.</p>
           <div className="mt-4">
             <Link
