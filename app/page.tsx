@@ -51,14 +51,13 @@ export default function Home() {
 
         <section className="bg-white p-6 rounded-lg shadow-sm">
           <h2 className="text-2xl font-semibold mb-4">About</h2>
-          <p className="text-gray-600">
-            lazyahh is a Discord bot that responds to basic conversations with short, casual phrases like "no", "aight",
-            and "sybau". It's designed to be minimal and straightforward, just like its responses.
-          </p>
+          <p className="text-gray-600">just a bot.</p>
           <div className="mt-4">
             <Link
-              href="https://discord.com/api/oauth2/authorize?client_id=YOUR_CLIENT_ID&permissions=2048&scope=bot%20applications.commands"
+              href="https://discord.com/oauth2/authorize?client_id=1349820665326211123"
               className="inline-block bg-indigo-600 text-white px-4 py-2 rounded-md hover:bg-indigo-700 transition"
+              target="_blank"
+              rel="noopener noreferrer"
             >
               Add to Discord
             </Link>
