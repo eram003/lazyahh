@@ -42,6 +42,10 @@ export default function Home() {
               <div className="font-medium">/intro</div>
               <div className="text-gray-600 text-sm">Show information about the bot developer</div>
             </li>
+            <li className="border-b pb-3">
+              <div className="font-medium">/help</div>
+              <div className="text-gray-600 text-sm">Get help when you need it most</div>
+            </li>
           </ul>
         </section>
 
@@ -64,3 +68,4 @@ export default function Home() {
     </main>
   )
 }
+
