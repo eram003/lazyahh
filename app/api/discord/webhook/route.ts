@@ -3,6 +3,12 @@ import { openai } from "@ai-sdk/openai"
 import { generateText } from "ai"
 import { getRandomCasualResponse, isBasicConversation } from "@/lib/casual-responses"
 
+// Array of help images
+const helpImages = [
+  "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/IMG_8523-jfkds47v1ZAjUoKV22aqjdOqd5g6NU.jpeg",
+  "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/IMG_7756-oB60NSceEgBeCGIx2Lm9tb0JLe2bcV.jpeg",
+]
+
 // This route handles webhook callbacks to update deferred responses
 export async function POST(req: Request) {
   try {
@@ -20,11 +26,11 @@ export async function POST(req: Request) {
     switch (type) {
       case "meme":
         response = {
-          content: "Here's a funny meme!",
+          content: "Here's a meme",
           embeds: [
             {
               image: {
-                url: "https://via.placeholder.com/400x400?text=Funny+Meme",
+                url: "https://via.placeholder.com/400x400?text=Meme",
               },
             },
           ],
@@ -46,6 +52,22 @@ export async function POST(req: Request) {
         }
 
         response = { content: responseText }
+        break
+
+      case "help":
+        // Get a random help image
+        const randomHelpImage = helpImages[Math.floor(Math.random() * helpImages.length)]
+
+        response = {
+          content: "just shoot me gng",
+          embeds: [
+            {
+              image: {
+                url: randomHelpImage,
+              },
+            },
+          ],
+        }
         break
 
       default:
@@ -73,13 +95,14 @@ async function getChatResponse(message: string) {
   try {
     const { text } = await generateText({
       model: openai("gpt-4o"),
-      system: "You are a funny Discord bot that responds with humor and wit. Keep responses short and entertaining.",
+      system:
+        "You are a lazy Discord bot that responds with minimal effort. Keep responses short, casual, and sometimes use slang. Your personality is laid-back and unbothered.",
       prompt: message,
     })
     return text
   } catch (error) {
     console.error("Error generating chat response:", error)
-    return "I would love to chat, but my AI brain is taking a coffee break! Try again in a bit."
+    return "whatever"
   }
 }
 
