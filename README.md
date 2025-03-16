@@ -1,13 +1,10 @@
-# Fun Discord Bot
+# Lazyahh Bot
 
-A fun AI-powered Discord bot that can chat with your friends and share memes.
+Simply no.
 
 ## Features
 
-- 🤖 AI-powered chat responses with a funny personality
-- 😂 Random memes
-- 🔍 Keyword detection for automatic responses
-- 📊 Web dashboard to monitor bot activity
+- nothing
 
 ## Setup Instructions
 
