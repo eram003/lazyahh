@@ -3,7 +3,7 @@ import { openai } from "@ai-sdk/openai"
 import { generateText } from "ai"
 import { getRandomCasualResponse, isBasicConversation } from "./casual-responses"
 
-// Update the commands array
+// Update the commands array to include the help command
 const commands = [
   new SlashCommandBuilder()
     .setName("chat")
@@ -13,6 +13,13 @@ const commands = [
     ),
   new SlashCommandBuilder().setName("meme").setDescription("Get a random meme"),
   new SlashCommandBuilder().setName("intro").setDescription("Show information about the bot developer"),
+  new SlashCommandBuilder().setName("help").setDescription("Get help when you need it most"),
+]
+
+// Array of help images
+const helpImages = [
+  "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/IMG_8523-jfkds47v1ZAjUoKV22aqjdOqd5g6NU.jpeg",
+  "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/IMG_7756-oB60NSceEgBeCGIx2Lm9tb0JLe2bcV.jpeg",
 ]
 
 // Create a map to store conversation history
@@ -98,6 +105,16 @@ export async function initializeBot() {
                 "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Screenshot%202025-03-08%20at%205.53.10%E2%80%AFAM-9NlNUtj2f6bBupUrrLgckVJSPOk2Ts.png",
                 "https://sjc.microlink.io/k9lGobPPgnPpiZPsIIqFbHlSguCJUFKkXUXLHPAqtrjvF7yCvVgmqLyif1ea0PUD3Lkp-nGB91VCsgr-1eanHw.jpeg",
               ],
+            })
+            break
+
+          case "help":
+            // Get a random help image
+            const randomHelpImage = helpImages[Math.floor(Math.random() * helpImages.length)]
+
+            await interaction.editReply({
+              content: "just shoot me gng",
+              files: [randomHelpImage],
             })
             break
 
@@ -208,3 +225,4 @@ async function getChatResponse(message: string, history: { role: string; content
     return "whatever"
   }
 }
+
