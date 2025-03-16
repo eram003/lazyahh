@@ -3,7 +3,7 @@ import { openai } from "@ai-sdk/openai"
 import { generateText } from "ai"
 import { getRandomCasualResponse, isBasicConversation } from "./casual-responses"
 
-// Update the commands array to include the new intro command
+// Update the commands array
 const commands = [
   new SlashCommandBuilder()
     .setName("chat")
@@ -54,8 +54,8 @@ export async function initializeBot() {
         switch (commandName) {
           case "meme":
             await interaction.editReply({
-              content: "Here's a funny meme!",
-              files: ["https://via.placeholder.com/400x400?text=Funny+Meme"],
+              content: "Here's a meme",
+              files: ["https://via.placeholder.com/400x400?text=Meme"],
             })
             break
 
@@ -102,11 +102,11 @@ export async function initializeBot() {
             break
 
           default:
-            await interaction.editReply("Unknown command")
+            await interaction.editReply("no")
         }
       } catch (error) {
         console.error(`Error executing command ${commandName}:`, error)
-        await interaction.editReply("There was an error executing this command!")
+        await interaction.editReply("bruh")
       }
     })
 
@@ -157,7 +157,7 @@ export async function initializeBot() {
           await message.reply(response)
         } catch (error) {
           console.error("Error responding to message:", error)
-          await message.reply("Sorry, I encountered an error while processing your message.")
+          await message.reply("idk")
         }
       } else {
         // Random chance to respond to messages without being mentioned
@@ -171,7 +171,7 @@ export async function initializeBot() {
             const hasKeyword = keywords.some((keyword) => message.content.toLowerCase().includes(keyword))
 
             if (hasKeyword) {
-              const response = await getRandomResponse()
+              const response = getRandomCasualResponse()
               await message.reply(response)
             }
           } catch (error) {
@@ -191,44 +191,6 @@ export async function initializeBot() {
   }
 }
 
-export async function createDiscordBot(token: string): Promise<any> {
-  // In a real implementation, this would use discord.js to create a client
-  // This is a mock implementation for demonstration purposes
-
-  const bot = {
-    sendMessage: async (channelId: string, content: string) => {
-      console.log(`[Bot] Sending message to channel ${channelId}: ${content}`)
-      // In a real implementation, this would use the Discord API to send a message
-    },
-
-    sendImage: async (channelId: string, content: string, imageUrl: string) => {
-      console.log(`[Bot] Sending image to channel ${channelId}: ${content}, ${imageUrl}`)
-      // In a real implementation, this would use the Discord API to send an image
-    },
-
-    onMessage: (callback: (message: any) => void) => {
-      console.log("[Bot] Registered message handler")
-      // In a real implementation, this would register an event handler for incoming messages
-    },
-
-    connect: async () => {
-      console.log("[Bot] Connecting to Discord...")
-      // In a real implementation, this would connect to the Discord gateway
-      console.log("[Bot] Connected to Discord")
-      return Promise.resolve()
-    },
-
-    disconnect: async () => {
-      console.log("[Bot] Disconnecting from Discord...")
-      // In a real implementation, this would disconnect from the Discord gateway
-      console.log("[Bot] Disconnected from Discord")
-      return Promise.resolve()
-    },
-  }
-
-  return bot
-}
-
 async function getChatResponse(message: string, history: { role: string; content: string }[] = []) {
   try {
     // Convert history to a format that can be used in the prompt
@@ -237,26 +199,12 @@ async function getChatResponse(message: string, history: { role: string; content
     const { text } = await generateText({
       model: openai("gpt-4o"),
       system:
-        "You are a funny Discord bot that responds with humor and wit. Keep responses short, entertaining, and occasionally use emojis. Your personality is sarcastic but friendly.",
+        "You are a lazy Discord bot that responds with minimal effort. Keep responses short, casual, and sometimes use slang. Your personality is laid-back and unbothered.",
       prompt: `${historyText ? historyText + "\n" : ""}User: ${message}\nBot:`,
     })
     return text
   } catch (error) {
     console.error("Error generating chat response:", error)
-    return "I would love to chat, but my AI brain is taking a coffee break! Try again in a bit."
+    return "whatever"
   }
 }
-
-async function getRandomResponse() {
-  const responses = [
-    "That's what she said! 😏",
-    "I'm not laughing, you're laughing! 😂",
-    "If I had a dollar for every time I heard that, I'd have exactly $0! 💸",
-    "That's hilarious! Almost as funny as watching paint dry. 🎨",
-    "Hold my virtual beer while I process how funny that was. 🍺",
-    "I'd tell you a joke in response, but I'm afraid you'd laugh so hard you'd break your keyboard. ⌨️",
-  ]
-
-  return responses[Math.floor(Math.random() * responses.length)]
-}
-
