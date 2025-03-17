@@ -1,4 +1,4 @@
-import { initializeBot } from "./lib/discord-bot.js"
+const { initializeBot } = require("./lib/discord-bot.js")
 
 // Initialize the Discord bot when the server starts
 async function startBot() {
