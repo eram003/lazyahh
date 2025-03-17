@@ -37,67 +37,67 @@ async function startBot() {
         .setName("chat")
         .setDescription("Chat with the bot")
         .addStringOption((option) =>
-          option.setName("message").setDescription("What do you want to chat about?").setRequired(true),
+          option.setName("message").setDescription("tf you wanna talk ab").setRequired(true),
         ),
-      new SlashCommandBuilder().setName("meme").setDescription("Get a random meme"),
-      new SlashCommandBuilder().setName("intro").setDescription("Show information about the bot developer"),
-      new SlashCommandBuilder().setName("help").setDescription("Get help when you need it most"),
+      new SlashCommandBuilder().setName("meme").setDescription("get a random ahh"),
+      new SlashCommandBuilder().setName("intro").setDescription("who made this shit"),
+      new SlashCommandBuilder().setName("help").setDescription("mid exam in two weeks"),
       
       // New fun commands
       new SlashCommandBuilder()
-        .setName("8ball")
-        .setDescription("Ask the magic 8-ball a question")
+        .setName("balls 😭")
+        .setDescription("dandadan")
         .addStringOption(option => 
-          option.setName("question").setDescription("What do you want to ask?").setRequired(true)
+          option.setName("question").setDescription("nigga ask me smth").setRequired(true)
         ),
       
       new SlashCommandBuilder()
         .setName("fortune")
-        .setDescription("Get your fortune told"),
+        .setDescription("you aint passing twin"),
       
       new SlashCommandBuilder()
         .setName("joke")
-        .setDescription("Get a random joke"),
+        .setDescription("ahh"),
       
       new SlashCommandBuilder()
         .setName("roast")
-        .setDescription("Get roasted by the bot")
+        .setDescription("chopped shi")
         .addUserOption(option => 
-          option.setName("user").setDescription("Who do you want to roast?").setRequired(false)
+          option.setName("user").setDescription("pick a struggler").setRequired(false)
         ),
       
       new SlashCommandBuilder()
         .setName("fact")
-        .setDescription("Get a random useless fact"),
+        .setDescription("fax ong"),
       
       new SlashCommandBuilder()
         .setName("choose")
-        .setDescription("Let the bot choose between options")
+        .setDescription("lemme cook")
         .addStringOption(option => 
-          option.setName("options").setDescription("Comma-separated options (e.g., pizza, burger, tacos)").setRequired(true)
+          option.setName("options").setDescription("pizza, burger, tacos").setRequired(true)
         ),
       
       new SlashCommandBuilder()
         .setName("roll")
-        .setDescription("Roll a dice")
+        .setDescription("gambling ahh")
         .addIntegerOption(option => 
-          option.setName("sides").setDescription("Number of sides on the dice").setRequired(false)
+          option.setName("sides").setDescription("number of sides on the dice").setRequired(false)
         ),
       
       new SlashCommandBuilder()
         .setName("flip")
-        .setDescription("Flip a coin"),
+        .setDescription("idk"),
       
       new SlashCommandBuilder()
-        .setName("rate")
-        .setDescription("Rate something out of 10")
+        .setName("rate my ahh")
+        .setDescription("are you cooked or are you cooked")
         .addStringOption(option => 
-          option.setName("thing").setDescription("What do you want rated?").setRequired(true)
+          option.setName("ts").setDescription("blud tf you want rated").setRequired(true)
         ),
       
       new SlashCommandBuilder()
         .setName("vibe")
-        .setDescription("Check the current vibe"),
+        .setDescription("w"),
     ];
     
     // Register slash commands
@@ -123,8 +123,8 @@ async function startBot() {
     // Helper functions
     function getRandomCasualResponse() {
       const casualResponses = [
-        "no", "aight", "sybau", "k", "lol", "bruh", "fr", "cap", "bet", "sus",
-        "yep", "nah", "idk", "sure", "whatever", "cool", "facts", "based", "wild", "mood",
+        "no", "aight", "sybau", "k", "lmfaooo", "can you stfu nigger", "fr", "nahh fr", "you might be cooking", "bet", "sus",
+        "damn bro", "nah", "idk", "sure", "uhh", "cool", "facts", "based", "wild", "mood", "nigger", "bro added a fun fact" 
       ];
       return casualResponses[Math.floor(Math.random() * casualResponses.length)];
     }
@@ -134,10 +134,10 @@ async function startBot() {
       
       if (lowerMessage.length < 15) return true;
       
-      const greetings = ["hi", "hey", "hello", "sup", "yo", "wassup", "what's up"];
+      const greetings = ["hi", "hey", "hello", "sup", "yo", "wassup", "what's up", "wassup", "blud"];
       if (greetings.some(g => lowerMessage.includes(g))) return true;
       
-      const simpleQuestions = ["how are you", "what are you doing", "you good", "u good"];
+      const simpleQuestions = ["sup nigga", "wsg gang", "yo nigga sup", "ay man"];
       if (simpleQuestions.some(q => lowerMessage.includes(q))) return true;
       
       if (!lowerMessage.includes("?") && lowerMessage.length < 25) return true;
@@ -166,44 +166,44 @@ async function startBot() {
     // New fun functions
     function getMagic8BallResponse() {
       const responses = [
-        "It is certain.", "It is decidedly so.", "Without a doubt.", "Yes definitely.", "You may rely on it.",
-        "As I see it, yes.", "Most likely.", "Outlook good.", "Yes.", "Signs point to yes.",
-        "Reply hazy, try again.", "Ask again later.", "Better not tell you now.", "Cannot predict now.", "Concentrate and ask again.",
-        "Don't count on it.", "My reply is no.", "My sources say no.", "Outlook not so good.", "Very doubtful.",
-        "no lol", "bruh what", "idk maybe", "ask someone who cares", "whatever you want", "in your dreams"
+        "Nigga idfk", "ye probably", "definitely gang ong", "Yes definitely", "You may rely on it",
+        "As I see it, yes.", "Most likely.", "Idk blud", "yes", "Yes (nope)",
+        "try again nigga", "huh what", "ts a secret", "nah gang I cant predict ts", "concentrate and ask again",
+        "dont count on it", "my reply is no.", "my sources say no.", "not looking good nigga", "I doubt it",
+        "no lol", "bruh what", "idk maybe", "ask someone who cares", "whatever you want", "not happening nigger"
       ];
       return responses[Math.floor(Math.random() * responses.length)];
     }
     
     function getFortune() {
       const fortunes = [
-        "You will find unexpected money soon.",
-        "Someone is thinking about you right now.",
-        "Your crush doesn't know you exist.",
-        "You'll be ghosted by someone important this week.",
-        "You will embarrass yourself in public soon.",
-        "Your next meal will be mid.",
-        "You'll get left on read by your crush.",
-        "Someone will steal your idea and get credit for it.",
-        "You'll step in something wet while wearing socks.",
-        "You'll find happiness in the most unexpected place.",
-        "Your phone will die at the worst possible moment.",
-        "You'll forget something important tomorrow.",
-        "Someone will compliment you when you least expect it.",
-        "You'll lose something important but find it in the last place you look.",
-        "Your next big purchase will break within a week.",
-        "You'll get stuck in traffic when you're already late.",
-        "You'll accidentally like an old post while stalking someone.",
-        "You'll get a random burst of motivation at 3 AM.",
-        "Your next selfie will be fire.",
-        "You'll think of the perfect comeback hours after the argument."
+        "you will fail an exam",
+        "a watched pot never boils",
+        "you got class tomorrow lil bro",
+        "your ahh gonna get ghosted this week nigga",
+        "nigga you staying unemployed",
+        "Your next meal will be mid",
+        "you'll get left on read by your friends",
+        "someone will steal your idea and get credit for it",
+        "You gonna step in something wet while wearing socks",
+        "hey it could be worse",
+        "Idk your fortune dawg you might be cooked",
+        "you gonna fumble in front of the huzz",
+        "talk behind peoples back more",
+        "I hope you lose your balls",
+        "nigga you poor",
+        "Your ahh will get stuck in traffic when you're already late",
+        "yeah Im tired rn",
+        "I'll do it later",
+        "She wants you bro trust",
+        "your dumbahh will think of the perfect comeback hours after the argument"
       ];
       return fortunes[Math.floor(Math.random() * fortunes.length)];
     }
     
     function getJoke() {
       const jokes = [
-        "I told my wife she was drawing her eyebrows too high. She looked surprised.",
+        "You are not nooahchan",
         "Why don't scientists trust atoms? Because they make up everything.",
         "What's the best thing about Switzerland? I don't know, but the flag is a big plus.",
         "I'm on a seafood diet. I see food and I eat it.",
