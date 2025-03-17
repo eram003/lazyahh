@@ -1,7 +1,6 @@
-import { Client, Events, GatewayIntentBits, REST, Routes, SlashCommandBuilder } from "discord.js"
-import { openai } from "@ai-sdk/openai"
-import { generateText } from "ai"
-import { getRandomCasualResponse, isBasicConversation } from "./casual-responses"
+const { Client, Events, GatewayIntentBits, REST, Routes, SlashCommandBuilder } = require("discord.js")
+const { openai } = require("@ai-sdk/openai")
+const { generateText } = require("ai")
 
 // Update the commands array to include the help command
 const commands = [
@@ -23,17 +22,74 @@ const helpImages = [
 ]
 
 // Create a map to store conversation history
-const conversationHistory = new Map<string, { role: string; content: string }[]>()
+const conversationHistory = new Map()
+
+// Get random casual response
+function getRandomCasualResponse() {
+  const casualResponses = [
+    "no",
+    "aight",
+    "sybau",
+    "k",
+    "lol",
+    "bruh",
+    "fr",
+    "cap",
+    "bet",
+    "sus",
+    "yep",
+    "nah",
+    "idk",
+    "sure",
+    "whatever",
+    "cool",
+    "facts",
+    "based",
+    "wild",
+    "mood",
+  ]
+  return casualResponses[Math.floor(Math.random() * casualResponses.length)]
+}
+
+// Check if message is a basic conversation
+function isBasicConversation(message) {
+  // Convert to lowercase for easier comparison
+  const lowerMessage = message.toLowerCase().trim()
+
+  // Check if message is short (less than 15 characters)
+  if (lowerMessage.length < 15) {
+    return true
+  }
+
+  // Check if message is a simple greeting
+  const greetings = ["hi", "hey", "hello", "sup", "yo", "wassup", "what's up"]
+  if (greetings.some((greeting) => lowerMessage.includes(greeting))) {
+    return true
+  }
+
+  // Check if message is a simple question
+  const simpleQuestions = ["how are you", "what are you doing", "you good", "u good"]
+  if (simpleQuestions.some((question) => lowerMessage.includes(question))) {
+    return true
+  }
+
+  // Check if message doesn't end with a question mark and is relatively short
+  if (!lowerMessage.includes("?") && lowerMessage.length < 25) {
+    return true
+  }
+
+  return false
+}
 
 // Initialize the Discord bot
-export async function initializeBot() {
+async function initializeBot() {
   try {
     // Register slash commands
-    const rest = new REST({ version: "10" }).setToken(process.env.DISCORD_BOT_TOKEN!)
+    const rest = new REST({ version: "10" }).setToken(process.env.DISCORD_BOT_TOKEN)
 
     console.log("Started refreshing application (/) commands.")
 
-    await rest.put(Routes.applicationCommands(process.env.DISCORD_CLIENT_ID!), { body: commands })
+    await rest.put(Routes.applicationCommands(process.env.DISCORD_CLIENT_ID), { body: commands })
 
     console.log("Successfully reloaded application (/) commands.")
 
@@ -67,7 +123,7 @@ export async function initializeBot() {
             break
 
           case "chat":
-            const message = interaction.options.getString("message")!
+            const message = interaction.options.getString("message")
             const userId = interaction.user.id
 
             // Initialize conversation history if it doesn't exist
@@ -76,7 +132,7 @@ export async function initializeBot() {
             }
 
             // Get conversation history
-            const history = conversationHistory.get(userId)!
+            const history = conversationHistory.get(userId)
 
             // Add user message to history
             history.push({ role: "user", content: message })
@@ -85,7 +141,7 @@ export async function initializeBot() {
             const limitedHistory = history.slice(-10)
 
             // Check if this is a basic conversation that should get a casual response
-            let response: string
+            let response
             if (isBasicConversation(message)) {
               response = getRandomCasualResponse()
             } else {
@@ -133,7 +189,7 @@ export async function initializeBot() {
       if (message.author.bot) return
 
       // Check if the bot is mentioned
-      const isMentioned = message.mentions.users.has(client.user!.id)
+      const isMentioned = message.mentions.users.has(client.user.id)
 
       // Respond to mentions
       if (isMentioned) {
@@ -150,7 +206,7 @@ export async function initializeBot() {
           }
 
           // Get conversation history
-          const history = conversationHistory.get(userId)!
+          const history = conversationHistory.get(userId)
 
           // Add user message to history
           history.push({ role: "user", content })
@@ -159,7 +215,7 @@ export async function initializeBot() {
           const limitedHistory = history.slice(-10)
 
           // Check if this is a basic conversation that should get a casual response
-          let response: string
+          let response
           if (isBasicConversation(content)) {
             response = getRandomCasualResponse()
           } else {
@@ -208,7 +264,7 @@ export async function initializeBot() {
   }
 }
 
-async function getChatResponse(message: string, history: { role: string; content: string }[] = []) {
+async function getChatResponse(message, history = []) {
   try {
     // Convert history to a format that can be used in the prompt
     const historyText = history.map((msg) => `${msg.role === "user" ? "User" : "Bot"}: ${msg.content}`).join("\n")
@@ -225,4 +281,6 @@ async function getChatResponse(message: string, history: { role: string; content
     return "whatever"
   }
 }
+
+module.exports = { initializeBot }
 
