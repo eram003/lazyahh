@@ -235,11 +235,11 @@ async function startBot() {
             
           case "ballsofwisdome":
             const question = interaction.options.getString("question");
-            await interaction.editReply(` **bros question:** ${question}\n**hollon lemme cook:** ${getMagic8BallResponse()}`);
+            await interaction.editReply(` bros question: ${question}\nhonest reaction: ${getMagic8BallResponse()}`);
             break;
             
           case "fortune":
-            await interaction.editReply(`😭 **Yo fortune:** ${getFortune()}`);
+            await interaction.editReply(`fortune: ${getFortune()}`);
             break;
             
           case "choose":
