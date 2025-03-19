@@ -101,8 +101,8 @@ async function startBot() {
     
     function getRandomCasualResponse() {
       const casualResponses = [
-        "no", "aight", "sybau", "nigga", "k", "lol", "bruh", "fr", "cap", "bet", "nigga thats sus",
-        "yep", "uhh sure", "nigga what", "insane", "that's wild", "nah", "idk", "sure", "aight bro sure", "das cool", "facts", "based", "wild", "mood",
+        "no", "bro can you like not talk to me", "nahhhhh", "oh hell nah", "aight bro", "sybau", "nigga", "k", "lol", "bruh", "fr", "cap", "bet", "nigga thats sus",
+        "yep", "uhh sure", "nigga what", "insane", "that's wild", "nah", "idk", "sure", "aight bro sure", "das cool", "facts", "based", "wild", "mood", "stfu", 
       ];
       return casualResponses[Math.floor(Math.random() * casualResponses.length)];
     }
@@ -235,7 +235,7 @@ async function startBot() {
             
           case "ballsofwisdome":
             const question = interaction.options.getString("question");
-            await interaction.editReply(`🎱 **Question:** ${question}\n**Answer:** ${getMagic8BallResponse()}`);
+            await interaction.editReply(` **bros question:** ${question}\n**hollon lemme cook:** ${getMagic8BallResponse()}`);
             break;
             
           case "fortune":
@@ -255,8 +255,8 @@ async function startBot() {
             break;
             
           case "flip":
-            const flip = Math.random() < 0.5 ? "Heads" : "Tails";
-            await interaction.editReply(`🪙 Coin flip: **${flip}**`);
+            const flip = Math.random() < 0.5 ? "heads 💀" : "tails 😔";
+            await interaction.editReply(`flipa clip: **${flip}**`);
             break;
             
           case "rate":
