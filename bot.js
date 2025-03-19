@@ -101,8 +101,8 @@ async function startBot() {
     
     function getRandomCasualResponse() {
       const casualResponses = [
-        "no", "aight", "sybau", "k", "lol", "bruh", "fr", "cap", "bet", "nigga thats sus",
-        "yep", "uhh sure", "nigga what", "insane", "that's wild" "nah", "idk", "sure", "aight bro sure", "das cool", "facts", "based", "wild", "mood",
+        "no", "aight", "sybau", "nigga", "k", "lol", "bruh", "fr", "cap", "bet", "nigga thats sus",
+        "yep", "uhh sure", "nigga what", "insane", "that's wild", "nah", "idk", "sure", "aight bro sure", "das cool", "facts", "based", "wild", "mood",
       ];
       return casualResponses[Math.floor(Math.random() * casualResponses.length)];
     }
