@@ -1,10 +1,8 @@
 import { NextResponse } from "next/server"
 import { verifyKey } from "discord-interactions"
 
-// This route handles Discord interactions (slash commands)
 export async function POST(req: Request) {
   try {
-    // Verify the request is coming from Discord
     const signature = req.headers.get("x-signature-ed25519")
     const timestamp = req.headers.get("x-signature-timestamp")
 
@@ -22,23 +20,19 @@ export async function POST(req: Request) {
 
     const interaction = JSON.parse(body)
 
-    // Handle PING (type 1)
     if (interaction.type === 1) {
       return NextResponse.json({ type: 1 })
     }
 
-    // Handle APPLICATION_COMMAND (type 2)
     if (interaction.type === 2) {
       const { name, options } = interaction.data
 
-      // Defer the response to give us time to process
       const deferResponse = {
-        type: 5, // DEFERRED_CHANNEL_MESSAGE_WITH_SOURCE
+        type: 5,
       }
 
       switch (name) {
         case "meme":
-          // We'll defer and then update with the meme
           return NextResponse.json(deferResponse)
 
         case "chat":
@@ -52,7 +46,6 @@ export async function POST(req: Request) {
             })
           }
 
-          // We'll defer and then update with the chat response
           return NextResponse.json(deferResponse)
 
         default:
@@ -71,4 +64,3 @@ export async function POST(req: Request) {
     return NextResponse.json({ error: "Internal server error" }, { status: 500 })
   }
 }
-
